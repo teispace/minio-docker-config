@@ -51,7 +51,15 @@ cp .env.example .env
 docker-compose up -d
 ```
 
-6. Change the server name in the `nginx.conf` file
+6. Change the server name in the `nginx.conf` file with the domain name in both console and minio
+
+```bash
+server_name console.example.com;
+```
+
+```bash
+server_name assets.example.com;
+```
 
 7. Copy the `nginx.conf` file to the Nginx configuration directory
 
@@ -82,7 +90,7 @@ certbot --nginx
 11. Access the Minio server using the domain name
 
 ```bash
-https://minio.example.com
+https://console.example.com
 ```
 
 12. Access the Minio server using the IP address
@@ -91,4 +99,14 @@ https://minio.example.com
 https://127.0.0.1:9001
 ```
 
+13. Allow the firewall rule for the Nginx server if not added already
+
+```bash
+ufw allow 'Nginx Full'
+```
+
 For more information, please refer to the [Minio Documentation](https://docs.min.io/) and [Nginx Documentation](https://nginx.org/en/docs/).
+
+# Accessing Minio Server
+
+To access the Minio server, open a web browser and enter the Minio server URL in the address bar. The Minio server URL is `https://console.example.com` or `https://server-ip-address:9001`. For API access, use url `https://assets.example.com`.
